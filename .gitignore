@@ -58,3 +58,15 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+Harvest.Cut/Library/
+
+Harvest.Cut/Temp/
+
+Harvest.Cut/obj/
+
+Harvest.Cut/UserSettings/
+
+Harvest.Cut/Logs/
+
+Harvest.Cut/.idea/
