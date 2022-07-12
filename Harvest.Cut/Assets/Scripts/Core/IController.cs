@@ -2,6 +2,7 @@
 {
 	public interface IController
 	{
-		
+		public void Attach();
+		public void Detach();
 	}
 }
