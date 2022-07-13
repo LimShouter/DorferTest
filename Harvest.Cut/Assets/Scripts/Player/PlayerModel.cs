@@ -6,11 +6,11 @@ namespace Player
 	public class PlayerModel
 	{
 		public Vector2 Direction;
-		public readonly PlayerDescriptionSO PlayerDescription;
+		public PlayerDescriptionSO Description { get; }
 
 		public PlayerModel(PlayerDescriptionSO playerDescription)
 		{
-			PlayerDescription = playerDescription;
+			Description = playerDescription;
 		}
 	}
 }
