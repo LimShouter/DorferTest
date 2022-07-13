@@ -3,6 +3,7 @@ using Cinemachine;
 using Core;
 using Descriptions;
 using Player;
+using Player.InputController;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -10,11 +11,13 @@ namespace DefaultNamespace
 	public class StartController : MonoBehaviour
 	{
 		[SerializeField] private MainDescriptionSO _mainDescription;
-		[SerializeField] private CinemachineStateDrivenCamera cameraBrain;
+		[SerializeField] private CinemachineStateDrivenCamera _cameraBrain;
+		[SerializeField] private Joystick _joystick;
 
 		private GameObject _playerGO;
 		private PlayerModel _playerModel;
 		private PlayerController _playerController;
+		private InputController _inputController;
 
 		private void Awake()
 		{
@@ -25,6 +28,7 @@ namespace DefaultNamespace
 		{
 			InitPlayer();
 			AttachCameraToPlayer();
+			AttachInputToPlayerModel();
 		}
 
 		private void Update()
@@ -42,8 +46,25 @@ namespace DefaultNamespace
 
 		private void AttachCameraToPlayer()
 		{
-			cameraBrain.Follow = _playerGO.transform;
-			cameraBrain.LookAt = _playerGO.transform;
+			_cameraBrain.Follow = _playerGO.transform;
+			_cameraBrain.LookAt = _playerGO.transform;
+		}
+
+		private void AttachInputToPlayerModel()
+		{
+			_inputController = new InputController(_joystick,_playerModel);
+			_inputController.Attach();
+		}
+
+		private void OnApplicationQuit()
+		{
+			DetachAll();
+		}
+
+		private void DetachAll()
+		{
+			_inputController.Detach();
+			_playerController.Detach();
 		}
 	}
 }

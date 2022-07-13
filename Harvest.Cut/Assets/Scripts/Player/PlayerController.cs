@@ -1,4 +1,5 @@
 ﻿using Core;
+using UnityEngine;
 
 namespace Player
 {
@@ -29,7 +30,7 @@ namespace Player
 
 		private void Move(float deltaTime)
 		{
-			_view.transform.Translate(_model.Direction * _model.PlayerDescription.Speed * deltaTime);
+			_view.transform.Translate(new Vector3(_model.Direction.x,0,_model.Direction.y) * _model.PlayerDescription.Speed * deltaTime);
 		}
 	}
 }
